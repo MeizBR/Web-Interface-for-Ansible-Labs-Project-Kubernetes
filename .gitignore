@@ -1,0 +1,86 @@
+# =========================
+# Node / General
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+dist/
+build/
+.tmp/
+temp/
+.cache/
+
+# =========================
+# Environment Files
+# =========================
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# =========================
+# Logs
+# =========================
+logs/
+*.log
+*.log.*
+debug.log
+
+# =========================
+# Docker
+# =========================
+/docker-data/
+/docker-compose.override.yml
+*.pid
+
+# =========================
+# Terraform
+# =========================
+*.tfstate
+*.tfstate.backup
+.terraform/
+.terraform.lock.hcl
+crash.log
+override.tf
+override.tf.json
+terraform.tfvars
+terraform.tfvars.json
+
+# =========================
+# React
+# =========================
+frontend/node_modules/
+frontend/build/
+frontend/.cache/
+frontend/.env
+
+# =========================
+# Express Backend
+# =========================
+backend/node_modules/
+backend/logs/
+backend/.env
+backend/uploads/
+backend/storage/
+/backend/kpit-vm.pem
+
+# =========================
+# System Files
+# =========================
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# =========================
+# AWS / Keys
+# =========================
+.aws/
+*.pem
+*.key

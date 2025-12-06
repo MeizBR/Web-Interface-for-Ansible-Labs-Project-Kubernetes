@@ -1,0 +1,41 @@
+#cloud-config
+autoinstall:
+  version: 1
+  locale: en_US.UTF-8
+
+  keyboard:
+    layout: fr
+    variant: azerty
+
+  network:
+    networkd:
+      ethernets:
+        enp0s3:
+          dhcp4: true
+
+  users:
+    - name: ubuntu
+      passwd: "$6$BCbQyeIWc10K29j3$xIn0mg7vFfCpbrRsvFbqBkRAB0mOUP39flWWAX4e6NrpM0m/EnGUZrmRtkOcaExTTDMbE.2RhVwtFgB8HhQFz."
+      groups: [ sudo ]
+      shell: /bin/bash
+
+  ssh:
+    install_server: true
+    allow-pw: true
+
+  storage:
+    layout:
+      name: direct
+
+  identity:
+    hostname: ubuntu-2204
+    username: ubuntu
+    password: "ubuntu"
+
+  apt:
+    preserve_sources_list: false
+
+  packages: []
+
+  shutdown:
+    mode: poweroff

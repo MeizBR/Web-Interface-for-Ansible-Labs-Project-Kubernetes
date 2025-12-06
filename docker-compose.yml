@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+
+  # backend
+  backend:
+    container_name: backend
+    build:
+      dockerfile: Dockerfile
+      context: ./backend
+    ports:
+      - "5000:5000"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:5000/api/health"]
+      interval: 10s
+      timeout: 10s
+      retries: 30
+      start_period: 40s
+    networks:
+      - ans-labs-net
+  
+  # frontend
+  frontend:
+    container_name: frontend
+    build:
+      dockerfile: Dockerfile
+      context: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - ans-labs-net
+    volumes:
+      - ./frontend/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./frontend/nginx/cors.conf:/etc/nginx/cors.conf:ro
+      - ./frontend/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+
+# networks
+networks:
+  ans-labs-net:
+    name: ans-labs-net
+    driver: bridge
