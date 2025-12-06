@@ -112,7 +112,7 @@ export default function App() {
       </button>
 
       {/* SSH button: only visible when showSshButton is true */}
-      {(
+      {showSshButton && (
         <button
           className="button ssh-btn"
           onClick={openSshTab}
