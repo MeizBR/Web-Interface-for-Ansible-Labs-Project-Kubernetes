@@ -6,3 +6,4 @@ Dockerfile
 .gitignore
 tests
 README.md
+.env
