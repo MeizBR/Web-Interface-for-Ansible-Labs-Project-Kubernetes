@@ -260,9 +260,8 @@ io.on('connection', (socket) => {
 });
 
 // start server and run initializeTerraform at startup
-const PORT = process.env.PORT || 5000;
-httpServer.listen(PORT, async () => {
-  console.log(`🚀 Backend API + Socket.IO listening on ${PORT}`);
+httpServer.listen(5000, async () => {
+  console.log(`🚀 Backend API + Socket.IO listening on 5000`);
   await initializeTerraform();
   console.log('Startup init done (terraformReady =', terraformReady, ')');
 });
