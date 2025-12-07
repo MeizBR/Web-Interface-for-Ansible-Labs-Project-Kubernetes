@@ -13,7 +13,6 @@ services:
       - SSH_USERNAME=${SSH_USERNAME}
       - SSH_PRIVATE_KEY_PATH=${SSH_PRIVATE_KEY_PATH}
       - TERRAFORM_DIR=${TERRAFORM_DIR}
-      - PORT=${PORT}
     ports:
       - "5000:5000"
     healthcheck:
