@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-deployment
+  template:
+    metadata:
+      labels:
+        app: backend-deployment
+    spec:
+      containers:
+      - name: backend-container
+        image: meiezbr/xxx
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        env:
+        - name: SSH_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: vm-configmap
+              key: SSH_HOST
+
+        - name: SSH_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: vm-configmap
+              key: SSH_USERNAME
+
+        - name: SSH_PRIVATE_KEY_PATH
+          valueFrom:
+            secretKeyRef:
+              name: vm-configmap
+              key: SSH_PRIVATE_KEY_PATH
+
+        - name: TERRAFORM_DIR
+          valueFrom:
+            secretKeyRef:
+              name: vm-configmap
+              key: TERRAFORM_DIR
+
+      volumeMounts:
+        - name: ssh-key-volume
+          mountPath: /app/keys
+          readOnly: true
+
+      volumes:
+      - name: ssh-key-volume
+        secret:
+          secretName: secret-ssh-auth
+          defaultMode: 0400
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector:
+    app: backend-deployment
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+      nodePort: 30001

@@ -23,6 +23,8 @@ services:
       start_period: 40s
     networks:
       - ans-labs-net
+    volumes:
+      - ./backend/keys/kpit-vm.pem:/app/keys/kpit-vm.pem:ro
   
   # frontend
   frontend:
