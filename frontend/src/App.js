@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import { io } from "socket.io-client";
 
-const ANSIBLE_LAB_URL = process.env.REACT_APP_ANSIBLE_LAB_URL || "/terminal/ssh/";
+const ANSIBLE_LAB_URL =
+  window._env_?.REACT_APP_ANSIBLE_LAB_URL || "/terminal/ssh/";
 
 export default function App() {
   const [status, setStatus] = useState("");

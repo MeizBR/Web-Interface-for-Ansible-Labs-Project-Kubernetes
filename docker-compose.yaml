@@ -9,10 +9,10 @@ services:
       dockerfile: Dockerfile
       context: ./backend
     environment:
-      - SSH_HOST=${SSH_HOST}
-      - SSH_USERNAME=${SSH_USERNAME}
-      - SSH_PRIVATE_KEY_PATH=${SSH_PRIVATE_KEY_PATH}
-      - TERRAFORM_DIR=${TERRAFORM_DIR}
+      - SSH_HOST=15.188.3.237
+      - SSH_USERNAME=ubuntu
+      - SSH_PRIVATE_KEY_PATH=./keys/kpit-vm.pem
+      - TERRAFORM_DIR=/home/ubuntu/Ansible-labs-with-Terraform
     ports:
       - "5000:5000"
     healthcheck:
@@ -33,7 +33,7 @@ services:
       dockerfile: Dockerfile
       context: ./frontend
     environment:
-      - REACT_APP_ANSIBLE_LAB_URL=${REACT_APP_ANSIBLE_LAB_URL}
+      - REACT_APP_ANSIBLE_LAB_URL=http://15.188.3.237:2222/ssh
     ports:
       - "80:80"
     depends_on:

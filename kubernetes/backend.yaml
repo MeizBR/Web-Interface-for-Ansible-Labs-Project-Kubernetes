@@ -20,6 +20,25 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
+
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: 5000
+          initialDelaySeconds: 40
+          periodSeconds: 10
+          timeoutSeconds: 10
+          failureThreshold: 30
+
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: 5000
+          initialDelaySeconds: 40
+          periodSeconds: 10
+          timeoutSeconds: 10
+          failureThreshold: 30
+          
         env:
         - name: SSH_HOST
           valueFrom:

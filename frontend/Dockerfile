@@ -24,8 +24,16 @@ COPY --from=build /app/nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/nginx/cors.conf /etc/nginx/cors.conf
 COPY --from=build /app/nginx/nginx.conf /etc/nginx/nginx.conf
 
+# ----------------------------------------------------
+# ✔ ADD: create entrypoint script to inject env.js
+# ----------------------------------------------------
+COPY --from=build /app/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 # Expose port
 EXPOSE 80
 
-# Start NGINX
-CMD ["nginx", "-g", "daemon off;"]
+# ----------------------------------------------------
+# ✔ ADD: run entrypoint BEFORE nginx
+# ----------------------------------------------------
+CMD ["/entrypoint.sh"]
