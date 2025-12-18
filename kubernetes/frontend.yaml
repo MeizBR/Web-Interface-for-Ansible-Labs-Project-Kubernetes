@@ -16,11 +16,11 @@ spec:
     spec:
       containers:
       - name: frontend-container
-        image: meiezbr/xxx
+        image: meiezbr/ansible-labs-web-interface-frontend:1.0
         imagePullPolicy: Always
         ports:
         - containerPort: 80
-        
+
         env:
         - name: REACT_APP_ANSIBLE_LAB_URL
           valueFrom:

@@ -4,7 +4,7 @@ metadata:
   name: vm-configmap
 data:
   SSH_HOST: xxx
-  SSH_USERNAME: xxx
-  SSH_PRIVATE_KEY_PATH: xxx
-  TERRAFORM_DIR: xxx
-  REACT_APP_ANSIBLE_LAB_URL: xxx
+  SSH_USERNAME: ubuntu
+  SSH_PRIVATE_KEY_PATH: /app/keys/ssh-privatekey
+  TERRAFORM_DIR: /home/ubuntu/Ansible-labs-with-Terraform
+  REACT_APP_ANSIBLE_LAB_URL: http://xxx:2222/ssh
